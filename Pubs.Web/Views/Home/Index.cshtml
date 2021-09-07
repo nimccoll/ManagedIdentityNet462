@@ -1,0 +1,29 @@
+﻿<!--
+//===============================================================================
+// Microsoft FastTrack for Azure
+// Managed Identity for .Net Framework 4.6.2 Samples
+//===============================================================================
+// Copyright © Microsoft Corporation.  All rights reserved.
+// THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
+// OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
+// LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+// FITNESS FOR A PARTICULAR PURPOSE.
+//===============================================================================
+-->
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Managed Identity Authentication Example for .Net Framework 4.6.2</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        @Html.ActionLink("Managed Identity with ADO.Net", "Index", "Publisher", null, new { @class = "btn btn-primary" })
+    </div>
+    <div class="col-md-6">
+        @Html.ActionLink("Managed Identity with Entity Framework", "ListPublishersUsingEF", "Publisher", null, new { @class = "btn btn-primary" })
+    </div>
+</div>

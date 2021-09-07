@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31613.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pubs.Data", "Pubs.Data\Pubs.Data.csproj", "{1FBF76F5-21FA-4465-A14E-D3F6D4C7493B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pubs.Web", "Pubs.Web\Pubs.Web.csproj", "{9E8782FF-D745-4FDE-A2FF-14344B339C33}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1FBF76F5-21FA-4465-A14E-D3F6D4C7493B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FBF76F5-21FA-4465-A14E-D3F6D4C7493B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FBF76F5-21FA-4465-A14E-D3F6D4C7493B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FBF76F5-21FA-4465-A14E-D3F6D4C7493B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E8782FF-D745-4FDE-A2FF-14344B339C33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E8782FF-D745-4FDE-A2FF-14344B339C33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E8782FF-D745-4FDE-A2FF-14344B339C33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E8782FF-D745-4FDE-A2FF-14344B339C33}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {99C851F6-8053-4307-87C4-410F5BB762BB}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://nimccoll.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Pubs.Data\\Pubs.Data.csproj
+		SccProjectName1 = Pubs.Data
+		SccLocalPath1 = Pubs.Data
+		SccProjectUniqueName2 = Pubs.Web\\Pubs.Web.csproj
+		SccProjectName2 = Pubs.Web
+		SccLocalPath2 = Pubs.Web
+	EndGlobalSection
+EndGlobal
