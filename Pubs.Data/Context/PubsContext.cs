@@ -9,6 +9,7 @@
 // FITNESS FOR A PARTICULAR PURPOSE.
 //===============================================================================
 using Pubs.Data.Models;
+using System.Data.Common;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration;
 using System.Data.Entity.ModelConfiguration.Conventions;
@@ -33,7 +34,7 @@ namespace Pubs.Data.Context
         /// Initialize DbContext using existing SQL connection
         /// </summary>
         /// <param name="cnnSql"></param>
-        public PubsContext(SqlConnection cnnSql): base(cnnSql, false)
+        public PubsContext(DbConnection cnnSql): base(cnnSql, false)
         {
             // Disable database migrations when using an existing connection with Azure AD authentication
             // with Entity Framework 5. This issue is resolved in the latest version of EF 6.

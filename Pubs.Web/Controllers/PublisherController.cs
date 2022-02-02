@@ -32,10 +32,17 @@ namespace Pubs.Web.Controllers
             // Create a new SQL Server connection
             _sqlConnection = new SqlConnection(_connectionString);
             // Retrieve an access token for the application's Managed Identity and set it on the SQL connection
+            // Comment out the next line if using the ReliableDb provider for built-in transient fault handling
             _sqlConnection.AccessToken = new AzureServiceTokenProvider().GetAccessTokenAsync("https://database.windows.net/").Result;
             // Pass the SQL connection to the data repository
             _pubsDataADO = new PubsDAOADO(_sqlConnection); // ADO.Net
+            // Comment out the next line if using the ReliableDb provider for built-in transient fault handling
             _pubsDataEF = new PubsDAO(_sqlConnection); // Entity Framework
+
+            // Uncomment the next three lines if you are using the ReliableDb provider for built-in transient fault handling
+            //var connection = ReliableDbProvider.SqlAzure.SqlAzureProvider.Instance.CreateConnection();
+            //connection.ConnectionString = ConfigurationManager.ConnectionStrings["pubs"].ConnectionString;
+            //_pubsDataEF = new PubsDAO(connection); // Entity Framework
         }
 
         public PublisherController(IPubsData pubsDataADO, IPubsData pubsDataEF)

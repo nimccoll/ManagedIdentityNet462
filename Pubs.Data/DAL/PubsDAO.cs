@@ -8,6 +8,8 @@
 // LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
 // FITNESS FOR A PARTICULAR PURPOSE.
 //===============================================================================
+using Microsoft.Practices.EnterpriseLibrary.WindowsAzure.TransientFaultHandling.SqlAzure;
+using Microsoft.Practices.TransientFaultHandling;
 using Pubs.Data.Context;
 using Pubs.Data.Contracts;
 using Pubs.Data.Models;
@@ -39,7 +41,7 @@ namespace Pubs.Data.DAL
         /// Create Entity Framework DbContext with existing connection
         /// </summary>
         /// <param name="cnnSql"></param>
-        public PubsDAO(SqlConnection cnnSql)
+        public PubsDAO(DbConnection cnnSql)
         {
             _context = new PubsContext(cnnSql);
         }
@@ -287,7 +289,18 @@ namespace Pubs.Data.DAL
 
         public List<Publisher> ListPublishers()
         {
-            return _context.Publishers.Include("Titles").ToList();
+            List<Publisher> publishers = null;
+
+            // Transient fault handling using Enterprise Library
+            // Comment out these next two lines if using the ReliableDb provider for built-in transient fault handling
+            RetryPolicy retryPolicy = new RetryPolicy<SqlAzureTransientErrorDetectionStrategy>(3);
+            publishers = retryPolicy.ExecuteAction<List<Publisher>>(() =>
+                  (_context.Publishers.Include("Titles").ToList()));
+
+            // Uncomment the next line if using the ReliableDb provider for built-in transient fault handling
+            //publishers = _context.Publishers.Include("Titles").ToList();
+            
+            return publishers;
         }
 
         public List<Publisher> ListPublishers(int startRow, int numberOfRows, out int numberOfPublishers)

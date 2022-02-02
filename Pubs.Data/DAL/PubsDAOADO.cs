@@ -8,6 +8,8 @@
 // LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
 // FITNESS FOR A PARTICULAR PURPOSE.
 //===============================================================================
+using Microsoft.Practices.EnterpriseLibrary.WindowsAzure.TransientFaultHandling.SqlAzure;
+using Microsoft.Practices.TransientFaultHandling;
 using Pubs.Data.Contracts;
 using Pubs.Data.Models;
 using System;
@@ -365,13 +367,19 @@ namespace Pubs.Data.DAL
 
             try
             {
-                sqlHelper = new SqlHelper(_cnnSql);
-                SqlDataReader reader = sqlHelper.ExecuteDataReader(sql, CommandType.StoredProcedure, ref parameters);
-                while (reader.Read())
-                {
-                    Publisher publisher = MapReaderToPublisher(reader);
-                    if (publisher != null) publishers.Add(publisher);
-                }
+                // Transient fault handling using Enterprise Library
+                RetryPolicy retryPolicy = new RetryPolicy<SqlAzureTransientErrorDetectionStrategy>(3);
+
+                retryPolicy.ExecuteAction(() =>
+                                  {
+                                      sqlHelper = new SqlHelper(_cnnSql);
+                                      SqlDataReader reader = sqlHelper.ExecuteDataReader(sql, CommandType.StoredProcedure, ref parameters);
+                                      while (reader.Read())
+                                      {
+                                          Publisher publisher = MapReaderToPublisher(reader);
+                                          if (publisher != null) publishers.Add(publisher);
+                                      }
+                                  });
             }
             catch (Exception)
             {
